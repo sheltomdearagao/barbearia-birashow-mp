@@ -1,0 +1,101 @@
+
+{
+  "name": "Barbearia Bira Show - Salvador",
+  "short_name": "Bira Show",
+  "description": "Sistema de agendamento da Barbearia Bira Show em Salvador, BA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#b87333",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["lifestyle", "business"],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/",
+  "id": "barbearia-bira-show",
+  "shortcuts": [
+    {
+      "name": "Agendar Horário",
+      "short_name": "Agendar",
+      "description": "Agendar um novo horário",
+      "url": "/booking",
+      "icons": [
+        {
+          "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/lovable-uploads/b871dc44-8f2d-4ccc-9222-d3c418e1b872.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

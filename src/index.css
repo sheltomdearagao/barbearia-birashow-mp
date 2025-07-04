@@ -1,0 +1,215 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 10 10% 4%;
+    --foreground: 48 20% 90%;
+
+    --card: 15 15% 8%;
+    --card-foreground: 48 20% 90%;
+
+    --popover: 15 15% 8%;
+    --popover-foreground: 48 20% 90%;
+
+    --primary: 28 45% 35%;
+    --primary-foreground: 48 20% 95%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 48 20% 90%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 48 10% 65%;
+
+    --accent: 28 45% 35%;
+    --accent-foreground: 48 20% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 48 20% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 28 45% 35%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-barbershop-dark text-barbershop-cream font-source;
+    /* Melhorar scroll em mobile */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    /* Prevenir zoom em inputs no iOS */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-oswald;
+  }
+
+  /* Melhorar responsividade de texto */
+  html {
+    font-size: 16px;
+  }
+
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  /* Melhorar área de toque - mínimo 44px para iOS */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(184, 115, 51, 0.2);
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Melhorar cliques em cards */
+  [role="button"], .cursor-pointer {
+    -webkit-tap-highlight-color: rgba(184, 115, 51, 0.1);
+  }
+
+  /* Scroll suave */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Fix para viewport mobile */
+  @supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+      min-height: -webkit-fill-available;
+    }
+  }
+
+  /* Melhorar espaçamento para mobile */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%);
+  }
+  
+  .copper-gradient {
+    background: linear-gradient(135deg, #b87333 0%, #cd7f32 100%);
+  }
+  
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Animações melhoradas */
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Carrossel infinito */
+  .carousel-infinite {
+    animation: scroll-infinite 30s linear infinite;
+  }
+
+  .carousel-infinite:hover {
+    animation-play-state: paused;
+  }
+
+  /* Container responsivo */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+
+  /* Melhor espaçamento em mobile */
+  .mobile-spacing {
+    @apply px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12;
+  }
+
+  /* Melhorar botões para mobile */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* Cards com melhor responsividade */
+  .responsive-card {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+}
+
+/* Animações para interações touch */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% { 
+    transform: translateX(100%); 
+  }
+  100% { 
+    transform: translateX(0); 
+  }
+}
+
+/* Animação do carrossel infinito */
+@keyframes scroll-infinite {
+  0% { 
+    transform: translateX(0); 
+  }
+  100% { 
+    transform: translateX(-100%); 
+  }
+}
+
+/* Media queries específicas para PWA */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Melhor responsividade para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    @apply px-6;
+  }
+}
+
+/* Orientação landscape em mobile */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .min-h-screen {
+    min-height: 100vh;
+  }
+}
+
+/* Melhorar performance em dispositivos móveis */
+@media (max-width: 768px) {
+  * {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}

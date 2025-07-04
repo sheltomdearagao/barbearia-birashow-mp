@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Star, Clock, Users } from 'lucide-react';
@@ -32,7 +31,7 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto">
           {/* Main heading */}
           <h1 className="text-4xl lg:text-7xl font-oswald font-bold text-barbershop-cream mb-6 leading-tight">
-            BIRA SHOW
+            Bira Show demais
             <span className="block text-transparent bg-gradient-to-r from-barbershop-copper to-barbershop-bronze bg-clip-text">
               Barbearia Raiz
             </span>

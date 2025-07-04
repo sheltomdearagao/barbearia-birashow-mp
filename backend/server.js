@@ -7,7 +7,16 @@ dotenv.config({ path: '.env.local' });
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://barbearia-birashow.netlify.app',
+    'https://www.birashow.shop',
+    'https://birashow.shop',
+    'http://localhost:5173',
+    'http://localhost:8082'
+  ],
+  credentials: true
+}));
 
 // Instancie o MercadoPago com o access token
 const mp = new mercadopago.MercadoPagoConfig({

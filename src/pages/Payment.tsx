@@ -27,7 +27,7 @@ const Payment = () => {
   // Resumo do pedido (em um app real, viria da página anterior)
   const orderSummary = {
     service: 'Corte + Barba',
-    barber: 'João Silva',
+    barber: 'Bira Show',
     date: '25/06/2025',
     time: '14:30',
     price: 45.00

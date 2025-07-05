@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft, Mail, Lock, User, Phone } from 'lucide-react';
+import { ArrowLeft, Mail, Lock, User, Phone, ArrowRight } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
@@ -40,6 +39,10 @@ const Login = () => {
     });
   };
 
+  const handleCreateAccount = () => {
+    navigate('/register', { state: { from: '/login', bookingData } });
+  };
+
   return (
     <div className="min-h-screen bg-barbershop-dark pt-20">
       <div className="container mx-auto px-4 py-8">
@@ -55,6 +58,16 @@ const Login = () => {
               Voltar
             </Button>
           </div>
+
+          {/* Welcome Message for Booking Flow */}
+          {bookingData && (
+            <div className="mb-6 p-4 bg-barbershop-charcoal border border-barbershop-copper rounded-lg">
+              <h3 className="text-barbershop-cream font-semibold mb-2">Quase lá! 🎉</h3>
+              <p className="text-barbershop-cream/80 text-sm">
+                Faça login ou crie uma conta para finalizar seu agendamento de R$ {bookingData.total}
+              </p>
+            </div>
+          )}
 
           <Card className="bg-barbershop-slate border-barbershop-steel">
             <CardHeader className="text-center">
@@ -148,17 +161,48 @@ const Login = () => {
                 </Button>
               </form>
 
-              <div className="mt-6 text-center">
-                <button
-                  type="button"
-                  onClick={() => setIsLogin(!isLogin)}
-                  className="text-barbershop-copper hover:text-barbershop-bronze transition-colors"
-                >
-                  {isLogin 
-                    ? 'Não tem conta? Criar uma agora' 
-                    : 'Já tem conta? Fazer login'
-                  }
-                </button>
+              {/* Enhanced Account Options */}
+              <div className="mt-6 space-y-4">
+                {isLogin ? (
+                  <>
+                    {/* For existing users - simple toggle */}
+                    <div className="text-center">
+                      <button
+                        type="button"
+                        onClick={() => setIsLogin(false)}
+                        className="text-barbershop-copper hover:text-barbershop-bronze transition-colors text-sm"
+                      >
+                        Não tem conta? Criar uma agora
+                      </button>
+                    </div>
+                    
+                    {/* Quick create account option */}
+                    <div className="border-t border-barbershop-steel pt-4">
+                      <p className="text-barbershop-cream/60 text-center text-sm mb-3">
+                        Novo por aqui?
+                      </p>
+                      <Button
+                        onClick={handleCreateAccount}
+                        variant="outline"
+                        className="w-full border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark"
+                      >
+                        <User className="h-4 w-4 mr-2" />
+                        Criar Conta Rápida
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center">
+                    <button
+                      type="button"
+                      onClick={() => setIsLogin(true)}
+                      className="text-barbershop-copper hover:text-barbershop-bronze transition-colors"
+                    >
+                      Já tem conta? Fazer login
+                    </button>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>

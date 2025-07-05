@@ -3,12 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft, User, Phone, Mail, Lock, IdCard } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, User, Phone, Mail, Lock, IdCard, ArrowRight, CheckCircle } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { signUp } from '@/services/supabaseService';
 
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     nome: '',
     telefone: '',
@@ -18,6 +19,8 @@ const Register = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const bookingData = location.state?.bookingData;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -38,9 +41,16 @@ const Register = () => {
         telefone: formData.telefone,
         cpf: formData.cpf || undefined
       });
-      navigate('/profile');
-    } catch (err: any) {
-      setError(err.message || 'Erro ao criar conta.');
+      
+      // If there's booking data, proceed to payment
+      if (bookingData) {
+        navigate('/payment', { state: { bookingData } });
+      } else {
+        navigate('/profile');
+      }
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Erro ao criar conta.';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -60,6 +70,20 @@ const Register = () => {
               Voltar
             </Button>
           </div>
+
+          {/* Welcome Message for Booking Flow */}
+          {bookingData && (
+            <div className="mb-6 p-4 bg-barbershop-charcoal border border-barbershop-copper rounded-lg">
+              <h3 className="text-barbershop-cream font-semibold mb-2 flex items-center">
+                <CheckCircle className="h-5 w-5 mr-2 text-barbershop-copper" />
+                Crie sua conta
+              </h3>
+              <p className="text-barbershop-cream/80 text-sm">
+                Em poucos passos você finaliza seu agendamento de R$ {bookingData.total}
+              </p>
+            </div>
+          )}
+
           <Card className="bg-barbershop-slate border-barbershop-steel">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-oswald text-barbershop-cream">
@@ -72,7 +96,7 @@ const Register = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="nome" className="text-barbershop-cream">Nome Completo</Label>
+                  <Label htmlFor="nome" className="text-barbershop-cream">Nome Completo *</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-3 h-4 w-4 text-barbershop-cream/60" />
                     <Input
@@ -88,7 +112,7 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="telefone" className="text-barbershop-cream">Telefone</Label>
+                  <Label htmlFor="telefone" className="text-barbershop-cream">Telefone *</Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3 h-4 w-4 text-barbershop-cream/60" />
                     <Input
@@ -104,7 +128,7 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-barbershop-cream">Email</Label>
+                  <Label htmlFor="email" className="text-barbershop-cream">Email *</Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 h-4 w-4 text-barbershop-cream/60" />
                     <Input
@@ -120,7 +144,7 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-barbershop-cream">Senha</Label>
+                  <Label htmlFor="password" className="text-barbershop-cream">Senha *</Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3 h-4 w-4 text-barbershop-cream/60" />
                     <Input
@@ -131,7 +155,8 @@ const Register = () => {
                       value={formData.password}
                       onChange={handleInputChange}
                       className="pl-10 bg-barbershop-charcoal border-barbershop-steel text-barbershop-cream"
-                      placeholder="Sua senha"
+                      placeholder="Mínimo 6 caracteres"
+                      minLength={6}
                     />
                   </div>
                 </div>
@@ -150,15 +175,20 @@ const Register = () => {
                     />
                   </div>
                 </div>
-                {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+                {error && <div className="text-red-500 text-sm text-center p-3 bg-red-500/10 rounded-lg">{error}</div>}
                 <Button type="submit" className="w-full copper-gradient mt-6" disabled={loading}>
-                  {loading ? 'Criando...' : 'Criar Conta'}
+                  {loading ? 'Criando...' : (
+                    <>
+                      {bookingData ? 'Criar Conta e Finalizar Agendamento' : 'Criar Conta'}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
                 </Button>
               </form>
               <div className="mt-6 text-center">
                 <button
                   type="button"
-                  onClick={() => navigate('/login')}
+                  onClick={() => navigate('/login', { state: { from: '/register', bookingData } })}
                   className="text-barbershop-copper hover:text-barbershop-bronze transition-colors"
                 >
                   Já tem conta? Fazer login

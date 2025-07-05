@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { usePWA } from '@/hooks/usePWA';
@@ -34,6 +33,10 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const handleRegisterClick = () => {
+    navigate('/register');
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-barbershop-dark/95 backdrop-blur-sm border-b border-barbershop-slate">
@@ -78,6 +81,15 @@ const Header = () => {
               </Button>
             )}
             <Button 
+              onClick={handleRegisterClick}
+              variant="outline"
+              className="border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold transition-all text-sm xl:text-base px-4 xl:px-6" 
+              size="sm"
+            >
+              <User className="h-4 w-4 mr-2" />
+              Criar Conta
+            </Button>
+            <Button 
               onClick={handleBookingClick}
               className="copper-gradient text-barbershop-cream font-semibold hover:scale-105 transition-transform text-sm xl:text-base px-4 xl:px-6" 
               size="sm"
@@ -113,7 +125,15 @@ const Header = () => {
           <div className="lg:hidden absolute top-full left-0 right-0 bg-barbershop-charcoal/85 backdrop-blur-md border-b border-barbershop-slate animate-slide-in-right shadow-xl">
             <nav className="px-4 py-6 space-y-1 max-h-[80vh] overflow-y-auto">
               {/* Mobile CTA primeiro */}
-              <div className="pb-4 border-b border-barbershop-slate/30 mb-4">
+              <div className="pb-4 border-b border-barbershop-slate/30 mb-4 space-y-3">
+                <Button 
+                  onClick={handleRegisterClick}
+                  variant="outline"
+                  className="w-full border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold h-12 text-base"
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  Criar Conta
+                </Button>
                 <Button 
                   onClick={handleBookingClick}
                   className="w-full copper-gradient text-barbershop-cream font-semibold h-12 text-base"

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -86,33 +85,33 @@ const ProductsSection = () => {
       <CardContent className="p-0">
         {/* Featured Badge */}
         {product.featured && (
-          <div className="absolute top-4 left-4 z-10 bg-barbershop-copper text-barbershop-cream text-sm font-semibold px-3 py-1 rounded-full">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 bg-barbershop-copper text-barbershop-cream text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full">
             Mais Vendido
           </div>
         )}
 
         {/* Image */}
-        <div className="relative h-48 lg:h-56 overflow-hidden rounded-t-lg">
+        <div className="relative h-40 sm:h-48 lg:h-56 overflow-hidden rounded-t-lg">
           <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {/* Brand */}
-          <p className="text-barbershop-copper text-sm font-medium mb-1">
+          <p className="text-barbershop-copper text-xs sm:text-sm font-medium mb-1 sm:mb-2">
             {product.brand}
           </p>
 
           {/* Name */}
-          <h3 className="text-lg lg:text-xl font-oswald font-bold text-barbershop-cream mb-2">
+          <h3 className="text-base sm:text-lg lg:text-xl font-oswald font-bold text-barbershop-cream mb-2 sm:mb-3">
             {product.name}
           </h3>
 
           {/* Rating */}
-          <div className="flex items-center space-x-2 mb-3">
+          <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
             <div className="flex items-center">
-              <Star className="h-4 w-4 text-barbershop-copper fill-current" />
-              <span className="text-barbershop-cream/80 text-sm ml-1">{product.rating}</span>
+              <Star className="h-3 w-3 sm:h-4 sm:w-4 text-barbershop-copper fill-current" />
+              <span className="text-barbershop-cream/80 text-xs sm:text-sm ml-1 font-medium">{product.rating}</span>
             </div>
             <span className="text-xs text-barbershop-cream/60">
               Estoque: {product.stock}
@@ -120,16 +119,16 @@ const ProductsSection = () => {
           </div>
 
           {/* Description */}
-          <p className="text-barbershop-cream/80 text-sm mb-4 leading-relaxed">
+          <p className="text-barbershop-cream/80 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
             {product.description}
           </p>
 
           {/* Features */}
-          <div className="mb-4">
-            <ul className="space-y-1">
+          <div className="mb-4 sm:mb-6">
+            <ul className="space-y-1 sm:space-y-2">
               {product.features.map((feature, idx) => (
                 <li key={idx} className="flex items-center text-xs text-barbershop-cream/70">
-                  <span className="w-1 h-1 bg-barbershop-copper rounded-full mr-2" />
+                  <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-barbershop-copper rounded-full mr-2 flex-shrink-0" />
                   {feature}
                 </li>
               ))}
@@ -138,17 +137,17 @@ const ProductsSection = () => {
 
           {/* Price & CTA */}
           <div className="flex items-center justify-between">
-            <span className="text-xl font-bold text-barbershop-copper">
+            <span className="text-lg sm:text-xl font-bold text-barbershop-copper">
               R$ {product.price.toFixed(2)}
             </span>
             <Button 
               size="sm" 
-              className={`${product.featured ? 'copper-gradient' : 'border border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-cream'} transition-all`} 
+              className={`h-8 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm font-semibold ${product.featured ? 'copper-gradient hover:scale-105' : 'border border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-cream'} transition-all`} 
               variant={product.featured ? 'default' : 'outline'} 
               onClick={() => handleAddToCart(product)} 
               disabled={product.stock === 0}
             >
-              <ShoppingCart className="h-4 w-4 mr-1" />
+              <ShoppingCart className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
               {product.stock === 0 ? 'Esgotado' : 'Comprar'}
             </Button>
           </div>
@@ -158,24 +157,24 @@ const ProductsSection = () => {
   );
 
   return (
-    <section id="products" className="py-16 lg:py-24 bg-barbershop-charcoal">
+    <section id="products" className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-barbershop-dark">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-3xl lg:text-5xl font-oswald font-bold text-barbershop-cream">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="flex justify-between items-center mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-oswald font-bold text-barbershop-cream">
               Arsenal do Cavalheiro
             </h2>
             <Cart />
           </div>
-          <p className="text-lg lg:text-xl text-barbershop-cream/80 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-barbershop-cream/80 max-w-3xl mx-auto leading-relaxed px-4">
             Produtos selecionados pelos nossos especialistas para manter seu estilo impecável em casa. 
             Qualidade profissional ao seu alcance.
           </p>
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 max-w-7xl mx-auto">
           {products.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -202,11 +201,6 @@ const ProductsSection = () => {
             <CarouselPrevious className="border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-cream" />
             <CarouselNext className="border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-cream" />
           </Carousel>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-12 lg:mt-16 text-center">
-          
         </div>
       </div>
     </section>

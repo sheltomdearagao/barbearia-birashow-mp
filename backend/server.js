@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env.local' });
 
+console.log("MP_ACCESS_TOKEN:", process.env.MP_ACCESS_TOKEN);
+
 const app = express();
 app.use(express.json());
 app.use(cors({

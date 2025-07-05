@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env.local' });
 
-console.log("MP_ACCESS_TOKEN:", process.env.MP_ACCESS_TOKEN);
+console.log("MERCADO_PAGO_ACCESS_TOKEN:", process.env.MERCADO_PAGO_ACCESS_TOKEN);
 
 const app = express();
 app.use(express.json());
@@ -22,7 +22,7 @@ app.use(cors({
 
 // Instancie o MercadoPago com o access token
 const mp = new mercadopago.MercadoPagoConfig({
-  accessToken: process.env.MP_ACCESS_TOKEN
+  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN
 });
 
 // Use o client de preferências

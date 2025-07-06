@@ -32,7 +32,7 @@ const TermsOfService = () => {
               <h2 className="text-xl font-semibold text-barbershop-copper mb-3">2. Descrição dos Serviços</h2>
               <p className="leading-relaxed">
                 A Barbearia Bira Show oferece serviços de barbearia, incluindo cortes de cabelo, barba, 
-                tratamentos capilares e venda de produtos relacionados. Também oferecemos sistema de 
+                tratamentos capilares. Também oferecemos sistema de 
                 agendamento online através de nossa plataforma.
               </p>
             </section>

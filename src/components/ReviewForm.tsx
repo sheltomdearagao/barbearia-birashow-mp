@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -109,12 +108,13 @@ const ReviewForm = () => {
                     onMouseEnter={() => handleStarHover(starRating)}
                     onMouseLeave={handleStarLeave}
                     className="p-1 hover:scale-110 transition-transform"
+                    title={`Dar ${starRating} estrela${starRating > 1 ? 's' : ''}`}
                   >
                     <Star
                       className={`h-8 w-8 ${
                         isActive 
                           ? 'text-barbershop-copper fill-barbershop-copper' 
-                          : 'text-barbershop-slate hover:text-barbershop-copper/50'
+                          : 'text-barbershop-steel fill-barbershop-steel hover:text-barbershop-copper/50'
                       }`}
                     />
                   </button>

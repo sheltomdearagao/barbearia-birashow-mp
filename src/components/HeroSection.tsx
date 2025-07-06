@@ -11,7 +11,7 @@ const HeroSection = () => {
     label: 'Avaliação'
   }, {
     icon: Clock,
-    value: '15+',
+    value: '20+',
     label: 'Anos de Experiência'
   }, {
     icon: Users,
@@ -78,8 +78,8 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Stats - Responsive layout */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8 lg:gap-16 xl:gap-20 max-w-5xl mx-auto px-4">
+          {/* Stats - Sempre horizontal */}
+          <div className="flex flex-row justify-center items-center gap-6 sm:gap-8 lg:gap-16 xl:gap-20 max-w-5xl mx-auto px-4">
             {stats.map((stat, index) => (
               <div key={index} className="text-center flex-1 max-w-[120px] sm:max-w-[140px] lg:max-w-[160px]">
                 <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-barbershop-copper/20 mb-3 sm:mb-4">

@@ -16,12 +16,15 @@ import InstallPrompt from "./components/InstallPrompt";
 import UpdateNotification from "./components/UpdateNotification";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Header from "./components/Header";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/booking" element={<Booking />} />
@@ -32,7 +35,14 @@ const App = () => (
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } 
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <InstallPrompt />

@@ -115,10 +115,10 @@ const ServicesSection = () => {
     {
       icon: User,
       title: 'Barba',
-      description: 'Modelagem, aparo e finalização da barba com navalha e produtos específicos para o cuidado da pele e dos pelos.',
+      description: 'Modelagem, aparo e finalização da barba com navalha e cuidado especial para a pele e os pelos.',
       price: 20,
       duration: 20,
-      features: ['Navalha tradicional', 'Produtos especiais', 'Cuidado com a pele']
+      features: ['Navalha tradicional', 'Cuidado com a pele']
     },
     {
       icon: Eye,

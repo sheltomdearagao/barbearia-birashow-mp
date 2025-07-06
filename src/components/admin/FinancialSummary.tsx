@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DollarSign, CreditCard, Banknote } from 'lucide-react';
@@ -31,10 +30,6 @@ const FinancialSummary = ({ paymentStats }: FinancialSummaryProps) => {
           <div className="flex justify-between items-center">
             <span className="text-barbershop-cream">Serviços realizados:</span>
             <span className="font-bold text-barbershop-copper">R$ 980,00</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-barbershop-cream">Produtos vendidos:</span>
-            <span className="font-bold text-barbershop-copper">R$ 270,50</span>
           </div>
           <div className="border-t border-barbershop-steel pt-4">
             <div className="flex justify-between items-center">

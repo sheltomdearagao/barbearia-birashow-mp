@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -23,7 +22,6 @@ const SalesTable = ({ sales }: SalesTableProps) => {
             <TableRow>
               <TableHead className="text-barbershop-cream">Data</TableHead>
               <TableHead className="text-barbershop-cream">Cliente</TableHead>
-              <TableHead className="text-barbershop-cream">Produtos</TableHead>
               <TableHead className="text-barbershop-cream">Quantidade</TableHead>
               <TableHead className="text-barbershop-cream">Total</TableHead>
               <TableHead className="text-barbershop-cream">Status</TableHead>
@@ -37,9 +35,6 @@ const SalesTable = ({ sales }: SalesTableProps) => {
                 </TableCell>
                 <TableCell className="text-barbershop-cream">
                   {sale.customer_name}
-                </TableCell>
-                <TableCell className="text-barbershop-cream">
-                  {sale.products.map(item => item.product.name).join(', ')}
                 </TableCell>
                 <TableCell className="text-barbershop-cream">
                   {sale.products.reduce((sum, item) => sum + item.quantity, 0)}

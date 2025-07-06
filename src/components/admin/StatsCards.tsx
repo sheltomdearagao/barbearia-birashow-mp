@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, DollarSign, ShoppingCart, TrendingUp } from 'lucide-react';
@@ -41,23 +40,6 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
           </div>
           <p className="text-xs text-barbershop-cream/60">
             {stats.pendingAppointments} pendentes
-          </p>
-        </CardContent>
-      </Card>
-
-      <Card className="bg-barbershop-slate border-barbershop-steel">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium text-barbershop-cream">
-            Produtos Vendidos
-          </CardTitle>
-          <ShoppingCart className="h-4 w-4 text-barbershop-copper" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold text-barbershop-cream">
-            {stats.productsSold}
-          </div>
-          <p className="text-xs text-barbershop-cream/60">
-            Este mês
           </p>
         </CardContent>
       </Card>

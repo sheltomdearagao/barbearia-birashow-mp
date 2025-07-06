@@ -19,35 +19,31 @@ const ContactSection = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
-            {/* Hours Card - Larger */}
-            <Card className="bg-barbershop-slate border-barbershop-steel">
-              <CardHeader className="pb-4 sm:pb-6">
-                <CardTitle className="text-barbershop-cream flex items-center text-lg sm:text-xl lg:text-2xl font-bold">
-                  <Clock className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3 text-barbershop-copper flex-shrink-0" />
-                  Horário de Funcionamento
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="space-y-4 sm:space-y-6 text-barbershop-cream/80 text-base sm:text-lg">
-                  <div className="flex justify-between items-center py-2 sm:py-3 border-b border-barbershop-steel/30">
-                    <span className="font-medium">Terça a Domingo:</span>
-                    <span className="font-bold text-barbershop-copper text-sm sm:text-base">9h às 12h | 14h às 21h</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 sm:py-3">
-                    <span className="font-medium">Segunda-feira:</span>
-                    <span className="text-barbershop-cream/60">Fechado</span>
-                  </div>
+            {/* Hours Card - Novo padrão igual ao do mapa */}
+            <div className="relative bg-barbershop-slate border border-barbershop-steel rounded-lg p-4 shadow-lg flex flex-col justify-between h-full">
+              <div className="flex items-center mb-4">
+                <Clock className="h-6 w-6 text-barbershop-copper mr-3" />
+                <h4 className="text-barbershop-cream font-bold text-lg">Horário de Funcionamento</h4>
+              </div>
+              <div className="space-y-4 sm:space-y-6 text-barbershop-cream/80 text-base sm:text-lg">
+                <div className="flex justify-between items-center py-2 sm:py-3 border-b border-barbershop-steel/30">
+                  <span className="font-medium">Terça a Domingo:</span>
+                  <span className="font-bold text-barbershop-copper text-sm sm:text-base">9h às 12h | 14h às 21h</span>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex justify-between items-center py-2 sm:py-3">
+                  <span className="font-medium">Segunda-feira:</span>
+                  <span className="text-barbershop-cream/60">Fechado</span>
+                </div>
+              </div>
+            </div>
 
-            {/* Compact Map */}
-            <div className="space-y-4 sm:space-y-6">
-              <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-barbershop-cream flex items-center">
-                <MapPin className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3 text-barbershop-copper" />
-                Localização no Mapa
-              </h4>
-              <div className="h-48 sm:h-64 lg:h-80 rounded-lg overflow-hidden border border-barbershop-steel">
+            {/* Compact Map - sem corte, padding e overflow adequados */}
+            <div className="relative bg-barbershop-slate border border-barbershop-steel rounded-lg p-4 shadow-lg flex flex-col justify-between h-full">
+              <div className="flex items-center mb-4">
+                <MapPin className="h-6 w-6 text-barbershop-copper mr-3" />
+                <h4 className="text-barbershop-cream font-bold text-lg">Localização no Mapa</h4>
+              </div>
+              <div className="w-full rounded-md overflow-hidden border-2 border-barbershop-steel">
                 <MapComponent />
               </div>
             </div>

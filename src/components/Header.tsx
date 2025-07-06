@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
-import { Menu, X, Download, User } from 'lucide-react';
+import { Menu, X, Download, User, LogOut, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { usePWA } from '@/hooks/usePWA';
+import { useAuth } from '@/hooks/useAuth';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { installApp, canInstall, isIOS } = usePWA();
+  const { isAuthenticated, signOut } = useAuth();
 
   const menuItems = [
     {
@@ -17,10 +26,6 @@ const Header = () => {
     {
       name: 'Serviços',
       href: '#services'
-    },
-    {
-      name: 'Produtos',
-      href: '#products'
     },
     {
       name: 'Contato',
@@ -35,6 +40,22 @@ const Header = () => {
 
   const handleRegisterClick = () => {
     navigate('/register');
+    setIsMenuOpen(false);
+  };
+
+  const handleLoginClick = () => {
+    navigate('/login');
+    setIsMenuOpen(false);
+  };
+
+  const handleProfileClick = () => {
+    navigate('/profile');
+    setIsMenuOpen(false);
+  };
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/');
     setIsMenuOpen(false);
   };
 
@@ -80,15 +101,62 @@ const Header = () => {
                 {isIOS ? 'Instalar' : 'Baixar App'}
               </Button>
             )}
-            <Button 
-              onClick={handleRegisterClick}
-              variant="outline"
-              className="border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold transition-all text-sm xl:text-base px-4 xl:px-6" 
-              size="sm"
-            >
-              <User className="h-4 w-4 mr-2" />
-              Criar Conta
-            </Button>
+            
+            {isAuthenticated ? (
+              // Usuário logado
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline"
+                    className="border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold transition-all text-sm xl:text-base px-4 xl:px-6" 
+                    size="sm"
+                  >
+                    <User className="h-4 w-4 mr-2" />
+                    Minha Conta
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-barbershop-slate border-barbershop-steel">
+                  <DropdownMenuItem 
+                    onClick={handleProfileClick}
+                    className="text-barbershop-cream hover:bg-barbershop-charcoal cursor-pointer"
+                  >
+                    <User className="h-4 w-4 mr-2" />
+                    Meu Perfil
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="bg-barbershop-steel" />
+                  <DropdownMenuItem 
+                    onClick={handleLogout}
+                    className="text-red-400 hover:bg-red-500/10 cursor-pointer"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sair
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              // Usuário não logado
+              <>
+                <Button 
+                  onClick={handleLoginClick}
+                  variant="outline"
+                  className="border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold transition-all text-sm xl:text-base px-4 xl:px-6" 
+                  size="sm"
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  Entrar
+                </Button>
+                <Button 
+                  onClick={handleRegisterClick}
+                  variant="outline"
+                  className="border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold transition-all text-sm xl:text-base px-4 xl:px-6" 
+                  size="sm"
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  Criar Conta
+                </Button>
+              </>
+            )}
+            
             <Button 
               onClick={handleBookingClick}
               className="copper-gradient text-barbershop-cream font-semibold hover:scale-105 transition-transform text-sm xl:text-base px-4 xl:px-6" 
@@ -126,14 +194,47 @@ const Header = () => {
             <nav className="px-4 py-6 space-y-1 max-h-[80vh] overflow-y-auto">
               {/* Mobile CTA primeiro */}
               <div className="pb-4 border-b border-barbershop-slate/30 mb-4 space-y-3">
-                <Button 
-                  onClick={handleRegisterClick}
-                  variant="outline"
-                  className="w-full border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold h-12 text-base"
-                >
-                  <User className="h-4 w-4 mr-2" />
-                  Criar Conta
-                </Button>
+                {isAuthenticated ? (
+                  // Usuário logado - mobile
+                  <>
+                    <Button 
+                      onClick={handleProfileClick}
+                      variant="outline"
+                      className="w-full border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold h-12 text-base"
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      Meu Perfil
+                    </Button>
+                    <Button 
+                      onClick={handleLogout}
+                      variant="outline"
+                      className="w-full border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-barbershop-dark font-semibold h-12 text-base"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sair
+                    </Button>
+                  </>
+                ) : (
+                  // Usuário não logado - mobile
+                  <>
+                    <Button 
+                      onClick={handleLoginClick}
+                      variant="outline"
+                      className="w-full border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold h-12 text-base"
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      Entrar
+                    </Button>
+                    <Button 
+                      onClick={handleRegisterClick}
+                      variant="outline"
+                      className="w-full border-2 border-barbershop-copper text-barbershop-copper hover:bg-barbershop-copper hover:text-barbershop-dark font-semibold h-12 text-base"
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      Criar Conta
+                    </Button>
+                  </>
+                )}
                 <Button 
                   onClick={handleBookingClick}
                   className="w-full copper-gradient text-barbershop-cream font-semibold h-12 text-base"

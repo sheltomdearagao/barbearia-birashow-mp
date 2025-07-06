@@ -20,11 +20,7 @@ const Footer = () => {
             <div className="space-y-3 sm:space-y-4">
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-barbershop-copper flex-shrink-0" />
-                <span className="text-barbershop-cream/80 text-sm sm:text-base">(71) 99999-9999</span>
-              </div>
-              <div className="flex items-center space-x-2 sm:space-x-3">
-                <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-barbershop-copper flex-shrink-0" />
-                <span className="text-barbershop-cream/80 text-sm sm:text-base">contato@birashow.com</span>
+                <span className="text-barbershop-cream/80 text-sm sm:text-base">(71) 99274-1864</span>
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-barbershop-copper flex-shrink-0" />
